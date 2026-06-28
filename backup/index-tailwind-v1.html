@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Innn Sports — Tailwind (Neon) — Play. Train. Compete.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#080A0E',
+            night: '#0F1218',
+            card: '#141820',
+            line: '#1E2430',
+            neon: '#C8F53A',
+            'neon-dim': 'rgba(200,245,58,0.12)',
+            mist: '#F2F4F0',
+            steel: '#8A94A6',
+            slab: '#2A3040',
+            danger: '#FF3B30',
+          },
+          fontFamily: {
+            sans: ['Barlow', 'system-ui', 'sans-serif'],
+            narrow: ['"Barlow Condensed"', 'system-ui', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-fade': 'linear-gradient(135deg, #080A0E 0%, #0a1020 60%, #050608 100%)',
+            'grid-neon':
+              'linear-gradient(rgba(200,245,58,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,245,58,0.03) 1px, transparent 1px)',
+            'shine-neon': 'linear-gradient(90deg, var(--tw-gradient-from, #C8F53A), transparent)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .page { display: none; }
+    .page.active { display: block; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.9); }
+    }
+    .pulse-dot::before {
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    .pulse-dot-lg::before {
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    .nav-links { display: none; }
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 1.75rem;
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+        inset: auto !important;
+        width: auto !important;
+      }
+    }
+    .nav-links.is-open {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden bg-ink font-sans text-mist antialiased">
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
+  </svg>
+
+<!-- PLACEHOLDER_CONTENT -->
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openVideoModal() {
+  const m = document.getElementById('videoModal');
+  m.classList.remove('hidden');
+  m.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal() {
+  const m = document.getElementById('videoModal');
+  m.classList.add('hidden');
+  m.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeVideoModal();
+});
+
+function toggleMobileMenu() {
+  const links = document.querySelector('.nav-links');
+  if (!links) return;
+  links.classList.toggle('is-open');
+  links.classList.toggle('fixed', links.classList.contains('is-open'));
+  links.classList.toggle('inset-x-0', links.classList.contains('is-open'));
+  links.classList.toggle('top-[76px]', links.classList.contains('is-open'));
+  links.classList.toggle('z-[999]', links.classList.contains('is-open'));
+  links.classList.toggle('flex-col', links.classList.contains('is-open'));
+  links.classList.toggle('border-b', links.classList.contains('is-open'));
+  links.classList.toggle('border-line', links.classList.contains('is-open'));
+  links.classList.toggle('bg-ink/95', links.classList.contains('is-open'));
+  links.classList.toggle('backdrop-blur-xl', links.classList.contains('is-open'));
+  links.classList.toggle('gap-4', links.classList.contains('is-open'));
+  links.classList.toggle('px-6', links.classList.contains('is-open'));
+  links.classList.toggle('py-6', links.classList.contains('is-open'));
+}
+
+const statEls = document.querySelectorAll('.stat-num[data-target]');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1600;
+    const steps = 60;
+    let step = 0;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      step++;
+      const val = Math.min(Math.round(increment * step), target);
+      el.textContent = target > 10 ? val.toLocaleString() + '+' : (step >= steps ? target : val);
+      if (step >= steps) {
+        el.textContent = target >= 1000 ? '1000+' : (target >= 10 ? '10+' : target.toString());
+        clearInterval(timer);
+      }
+    }, duration / steps);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.4 });
+statEls.forEach(el => counterObs.observe(el));
+</script>
+</body>
+</html>

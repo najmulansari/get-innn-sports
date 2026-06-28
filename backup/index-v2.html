@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<!-- Get Innn Sports — Tailwind CDN version (previously saved as index-tailwind.html) -->
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Innn Sports — Play. Train. Compete. Experience.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#06080d',
+            night: '#0c1018',
+            elevated: '#121926',
+            stroke: '#1e2a3d',
+            frost: '#e8eef8',
+            muted: '#8b9cb8',
+            accent: '#22d3ee',
+            glow: '#67e8f9',
+            ambercta: '#fbbf24',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['Oswald', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            glow: '0 0 60px -12px rgba(34, 211, 238, 0.35)',
+            card: '0 25px 50px -12px rgba(0, 0, 0, 0.45)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.85); }
+    }
+    .pulse-dot::before { animation: pulse-dot 1.5s ease-in-out infinite; }
+    .pulse-soft { animation: pulse-dot 2.2s ease-in-out infinite; }
+    @keyframes ring-out {
+      0% { transform: scale(1); opacity: .45; }
+      100% { transform: scale(1.45); opacity: 0; }
+    }
+    .play-ring::before {
+      content: ''; position: absolute; inset: -10px;
+      border: 1px solid rgba(255,255,255,.18); border-radius: 9999px;
+      animation: ring-out 3s ease-out infinite;
+    }
+    .nav-links { display: none; }
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        align-items: center;
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+        inset: auto !important;
+        width: auto !important;
+      }
+    }
+    .nav-links.is-open {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden bg-void font-sans text-frost antialiased">
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
+  </svg>
+
+  <a href="https://wa.me/1234567890?text=Hi%20Get%20Innn%20Sports!%20I%27d%20like%20to%20book%20a%20free%20trial." class="fixed bottom-6 right-6 z-[998] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-glow text-void shadow-glow transition hover:scale-105 hover:shadow-lg md:bottom-8 md:right-8 md:h-16 md:w-16" target="_blank" aria-label="Chat on WhatsApp" title="Chat to Book Trial">
+    <svg class="h-7 w-7 md:h-8 md:w-8" aria-hidden="true"><use href="#i-wa"/></svg>
+  </a>
+
+  <nav class="fixed inset-x-0 top-0 z-[1000] flex h-[76px] items-center justify-between border-b border-stroke/80 bg-void/85 px-5 backdrop-blur-xl md:px-12">
+    <button type="button" class="flex cursor-pointer flex-col gap-0.5 text-left md:gap-px" onclick="showPage('home')">
+      <span class="font-display text-lg font-bold uppercase tracking-[0.2em] text-frost md:text-xl">Get Inn<span class="text-accent">n</span> Sports</span>
+      <span class="text-[9px] font-semibold uppercase tracking-[0.35em] text-muted">The Complete Sports Ecosystem</span>
+    </button>
+    <ul class="nav-links list-none flex-col gap-4 border-stroke bg-void/95 px-6 py-6 backdrop-blur-xl md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0">
+      <li><a id="nav-home" onclick="showPage('home')" class="nav-item active cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-accent underline decoration-accent decoration-2 underline-offset-8">Home</a></li>
+      <li><a id="nav-rafa" onclick="showPage('rafa')" class="nav-item cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-accent">RAFA Academy</a></li>
+      <li><a id="nav-events" onclick="showPage('events')" class="nav-item cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-accent">Events</a></li>
+      <li><a id="nav-arenas" onclick="showPage('arenas')" class="nav-item cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-accent">Arenas</a></li>
+      <li><a id="nav-esports" onclick="showPage('esports')" class="nav-item cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-accent">Esports</a></li>
+      <li><a id="nav-contact" onclick="showPage('contact')" class="nav-item cursor-pointer font-display text-xs font-semibold uppercase tracking-widest text-muted transition hover:text-accent">Contact</a></li>
+      <li><a onclick="showPage('contact')" class="cursor-pointer rounded-full bg-ambercta px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-void no-underline shadow-md transition hover:bg-amber-300">Book Free Trial</a></li>
+    </ul>
+    <button type="button" class="rounded-lg border border-stroke p-2 text-frost md:hidden" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
+  </nav>
+
+  <div id="page-home" class="page active pt-[76px]">
+    <section class="relative flex min-h-[calc(100vh-76px)] items-center overflow-hidden px-5 pb-16 pt-12 md:px-12 lg:px-20">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_-10%,rgba(34,211,238,0.18),transparent),radial-gradient(ellipse_50%_40%_at_10%_80%,rgba(251,191,36,0.08),transparent)]"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-void via-night to-void"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[52%] bg-cover bg-center opacity-[0.55] md:block" style="background-image:linear-gradient(90deg,#06080d 0%,rgba(6,8,13,0.3) 45%,transparent 100%),url(https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1200&q=80)"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(34,211,238,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.5) 1px,transparent 1px);background-size:72px 72px"></div>
+
+      <div class="relative z-[2] max-w-xl lg:max-w-2xl">
+        <div class="relative mb-7 inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 font-display text-[11px] font-bold uppercase tracking-[0.35em] text-glow">
+          <span class="pulse-soft inline-block h-2 w-2 rounded-full bg-accent"></span>
+          The Complete Sports Ecosystem
+        </div>
+        <h1 class="font-display text-[clamp(2.75rem,10vw,7rem)] font-bold uppercase leading-[0.92] tracking-tight">
+          Get Into<span class="block bg-gradient-to-r from-accent via-glow to-ambercta bg-clip-text text-transparent">Sports.</span>
+        </h1>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="rounded-lg border border-stroke bg-elevated/60 px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-wider text-muted">🏟️ Play</span>
+          <span class="rounded-lg border border-stroke bg-elevated/60 px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-wider text-muted">🎓 Train</span>
+          <span class="rounded-lg border border-stroke bg-elevated/60 px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-wider text-muted">🏆 Compete</span>
+          <span class="rounded-lg border border-stroke bg-elevated/60 px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-wider text-muted">🎮 Experience</span>
+        </div>
+        <p class="mt-8 max-w-md text-base font-light leading-relaxed text-muted md:text-lg">
+          This is where your football journey begins. We don't just train players — we build competitors. From training ground to match day.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <button type="button" onclick="showPage('contact')" class="rounded-full bg-ambercta px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-void shadow-lg transition hover:-translate-y-0.5 hover:bg-amber-300">Book Your Free Trial →</button>
+          <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20tournament%20details." target="_blank" class="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-elevated px-6 py-3.5 font-display text-xs font-bold uppercase tracking-wider text-accent transition hover:bg-accent hover:text-void">
+            <svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg>
+            Get Tournament Details
+          </a>
+        </div>
+        <div class="pulse-dot mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-red-400 before:h-1.5 before:w-1.5 before:rounded-full before:bg-red-400 before:content-['']">
+          Limited Slots Available — Registrations Closing Soon
+        </div>
+      </div>
+
+      <button type="button" onclick="openVideoModal()" class="group absolute right-[10%] top-1/2 z-[3] hidden -translate-y-1/2 flex-col items-center gap-4 md:flex" aria-label="Watch highlights">
+        <span class="play-ring relative flex h-20 w-20 items-center justify-center rounded-full border-2 border-white/35 bg-white/10 backdrop-blur-md transition group-hover:border-accent group-hover:bg-accent">
+          <svg class="ml-1 h-8 w-8 text-white transition group-hover:text-void" aria-hidden="true"><use href="#i-play"/></svg>
+        </span>
+        <span class="font-display text-[11px] font-bold uppercase tracking-widest text-white/70">Watch Highlights</span>
+      </button>
+
+      <div class="relative z-[2] mt-12 flex flex-wrap gap-10 border-t border-stroke/80 pt-10 md:absolute md:bottom-12 md:left-5 md:right-5 md:mt-0 md:flex-nowrap md:border-t-0 md:pt-0 lg:left-12 lg:right-12 xl:left-20 xl:right-20">
+        <div><strong class="font-display text-2xl text-frost">1000+</strong><span class="mt-1 block text-xs uppercase tracking-widest text-muted">Players Trained</span></div>
+        <div><strong class="font-display text-2xl text-frost">10+</strong><span class="mt-1 block text-xs uppercase tracking-widest text-muted">Events Hosted</span></div>
+        <div><strong class="font-display text-2xl text-frost">3</strong><span class="mt-1 block text-xs uppercase tracking-widest text-muted">Arena Locations</span></div>
+      </div>
+    </section>
+
+    <div class="border-y border-stroke bg-night/50">
+      <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+        <div class="mx-auto max-w-3xl text-center md:text-left">
+          <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">One Ecosystem. Every Sport.</p>
+          <h2 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-frost md:text-5xl">The Get Innn Sports<br class="hidden md:block"/> Ecosystem</h2>
+          <p class="mt-4 font-display text-lg text-muted"><span class="text-accent">Play.</span> Train. <span class="text-ambercta">Compete.</span> Experience. — All in one ecosystem</p>
+        </div>
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article onclick="showPage('arenas')" class="group cursor-pointer rounded-2xl border border-stroke bg-elevated/80 p-6 shadow-card backdrop-blur transition hover:border-accent/50 hover:shadow-glow">
+            <span class="text-3xl">🏟️</span>
+            <div class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-accent">Play</div>
+            <div class="font-display text-xl font-bold uppercase text-frost">Arenas</div>
+            <p class="mt-3 text-sm leading-relaxed text-muted">State-of-the-art sports arenas built for high-performance play. Book your pitch across 3 premium locations.</p>
+          </article>
+          <article onclick="showPage('rafa')" class="group cursor-pointer rounded-2xl border border-stroke bg-elevated/80 p-6 shadow-card backdrop-blur transition hover:border-accent/50 hover:shadow-glow">
+            <span class="text-3xl">🎓</span>
+            <div class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-accent">Train</div>
+            <div class="font-display text-xl font-bold uppercase text-frost">RAFA Academy</div>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Elite football coaching with structured player development. Powered by an international TalentX UK partnership.</p>
+          </article>
+          <article onclick="showPage('events')" class="group cursor-pointer rounded-2xl border border-stroke bg-elevated/80 p-6 shadow-card backdrop-blur transition hover:border-accent/50 hover:shadow-glow">
+            <span class="text-3xl">🏆</span>
+            <div class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-accent">Compete</div>
+            <div class="font-display text-xl font-bold uppercase text-frost">Tournaments</div>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Our own IP events like MBCL plus full event management for partner brands and companies.</p>
+          </article>
+          <article onclick="showPage('esports')" class="group cursor-pointer rounded-2xl border border-stroke bg-elevated/80 p-6 shadow-card backdrop-blur transition hover:border-accent/50 hover:shadow-glow">
+            <span class="text-3xl">🎮</span>
+            <div class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-accent">Experience</div>
+            <div class="font-display text-xl font-bold uppercase text-frost">Esports & Events</div>
+            <p class="mt-3 text-sm leading-relaxed text-muted">The next generation of sports is here. EAFC tournaments, community gaming events, and future esports leagues.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="border-b border-stroke bg-gradient-to-r from-accent/10 via-transparent to-ambercta/10">
+      <div class="mx-auto grid max-w-7xl divide-y divide-stroke sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+        <div class="px-5 py-12 text-center md:px-8"><div class="stat-num font-display text-5xl font-bold text-accent md:text-6xl" data-target="1000">0</div><div class="mt-2 font-display text-xs uppercase tracking-widest text-muted">Players Trained</div></div>
+        <div class="px-5 py-12 text-center md:px-8"><div class="stat-num font-display text-5xl font-bold text-accent md:text-6xl" data-target="10">0</div><div class="mt-2 font-display text-xs uppercase tracking-widest text-muted">Events Hosted</div></div>
+        <div class="px-5 py-12 text-center md:px-8"><div class="stat-num font-display text-5xl font-bold text-accent md:text-6xl" data-target="1000">0</div><div class="mt-2 font-display text-xs uppercase tracking-widest text-muted">Tournament Participants</div></div>
+        <div class="px-5 py-12 text-center md:px-8"><div class="stat-num font-display text-5xl font-bold text-accent md:text-6xl" data-target="3">0</div><div class="mt-2 font-display text-xs uppercase tracking-widest text-muted">Arena Locations</div></div>
+      </div>
+    </div>
+
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Events & Tournaments</p>
+          <p class="mt-4 font-display text-3xl font-bold uppercase leading-tight text-frost md:text-4xl">We Organise.<br/>We Manage.<br/>We Execute.</p>
+        </div>
+        <button type="button" onclick="showPage('events')" class="rounded-full border border-stroke px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-frost transition hover:border-accent hover:text-accent">View All Events</button>
+      </div>
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        <article class="group overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card lg:row-span-2">
+          <img class="h-48 w-full object-cover transition duration-500 group-hover:scale-105 lg:h-[280px]" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80" alt="MBCL Tournament"/>
+          <div class="p-6">
+            <span class="inline-block rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-accent">Own IP Event</span>
+            <h3 class="mt-4 font-display text-xl font-bold uppercase text-frost">MBCL — Mid-Block Champions League</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Our flagship football tournament. Competitive brackets, high-energy match days, and a growing community of players and teams.</p>
+            <button type="button" onclick="showPage('contact')" class="mt-6 w-full rounded-full bg-ambercta py-3 font-display text-xs font-bold uppercase tracking-wider text-void transition hover:bg-amber-300 md:w-auto md:px-8">Register Your Team Now →</button>
+            <div class="pulse-dot mt-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase text-red-400 before:h-1.5 before:w-1.5 before:rounded-full before:bg-red-400 before:content-['']">Registrations Closing Soon</div>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card">
+          <img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=80" alt="Brand Events"/>
+          <div class="p-6">
+            <span class="inline-block rounded-full border border-stroke px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-muted">Partner Events</span>
+            <h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Corporate & Brand Tournaments</h3>
+            <p class="mt-2 text-sm text-muted">We execute sports events for other brands — full management from concept to completion.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card">
+          <img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1459865264687-595d652de67e?w=700&q=80" alt="Community"/>
+          <div class="p-6">
+            <span class="inline-block rounded-full border border-stroke px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-muted">Community Events</span>
+            <h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Open Tournaments & Leagues</h3>
+            <p class="mt-2 text-sm text-muted">Monthly open competitions for all skill levels. Show up, compete, grow.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="border-y border-stroke bg-night/40">
+      <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div class="relative overflow-hidden rounded-2xl border border-stroke shadow-card">
+            <img class="w-full object-cover" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80" alt="RAFA Academy Training"/>
+            <div class="absolute bottom-6 left-6 rounded-xl bg-ambercta px-4 py-2 font-display text-sm font-bold uppercase text-void">RAFA Academy</div>
+          </div>
+          <div>
+            <p class="font-display text-sm text-muted">RAFA Academy — <span class="text-accent">Powered by Get Innn Sports</span></p>
+            <p class="mt-2 font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Elite Football Coaching</p>
+            <h2 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-frost">We Don't Just<br/>Train Players.<br/>We Build<br/>Competitors.</h2>
+            <p class="mt-6 text-muted leading-relaxed">From training ground to match day — RAFA Academy provides structured player development for the next generation of footballers.</p>
+            <div class="mt-8 rounded-2xl border border-accent/25 bg-elevated/90 p-6 backdrop-blur">
+              <div class="flex flex-wrap items-center gap-4">
+                <span class="rounded-lg bg-accent px-4 py-2 font-display text-lg font-bold text-void">TalentX</span>
+                <span class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">⭐ International Technical Partner · UK</span>
+              </div>
+              <p class="mt-4 text-sm leading-relaxed text-muted">RAFA Academy is proud to be partnered with TalentX (UK) — a premier football academy known for developing players who have progressed into professional environments in England.</p>
+              <ul class="mt-4 space-y-2 text-sm text-frost">
+                <li class="flex gap-2"><span class="text-accent">✓</span> International-level training methodology</li>
+                <li class="flex gap-2"><span class="text-accent">✓</span> Structured player development systems</li>
+                <li class="flex gap-2"><span class="text-accent">✓</span> Exposure to global football standards</li>
+              </ul>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <button type="button" onclick="showPage('rafa')" class="rounded-full bg-ambercta px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-void hover:bg-amber-300">Join Next Batch →</button>
+              <button type="button" onclick="showPage('contact')" class="rounded-full border border-stroke px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-frost hover:border-accent hover:text-accent">Book Your Free Trial</button>
+            </div>
+            <div class="pulse-dot mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase text-red-400 before:h-1.5 before:w-1.5 before:rounded-full before:bg-red-400 before:content-['']">Limited Slots — Next Batch Starting Soon</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div>
+          <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Esports & Gaming</p>
+          <h2 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-frost">The Next<br/>Generation<br/>Of Sports<span class="block bg-gradient-to-r from-accent to-glow bg-clip-text text-transparent">Is Here.</span></h2>
+          <p class="mt-6 text-muted leading-relaxed">Esports at Get Innn Sports isn't a side feature — it's a full vertical. EAFC tournaments, community gaming events, and future competitive leagues.</p>
+          <div class="mt-8 space-y-4">
+            <div class="flex gap-4 rounded-xl border border-stroke bg-elevated/60 p-4">
+              <span class="font-display text-2xl font-bold text-accent/40">01</span>
+              <div><h4 class="font-display font-bold uppercase text-frost">EAFC Tournaments</h4><p class="mt-1 text-sm text-muted">Competitive EA FC gaming tournaments with proper brackets, prizes, and live coverage.</p></div>
+            </div>
+            <div class="flex gap-4 rounded-xl border border-stroke bg-elevated/60 p-4">
+              <span class="font-display text-2xl font-bold text-accent/40">02</span>
+              <div><h4 class="font-display font-bold uppercase text-frost">Community Gaming Events</h4><p class="mt-1 text-sm text-muted">Regular community events where gamers compete, connect, and grow together.</p></div>
+            </div>
+            <div class="flex gap-4 rounded-xl border border-stroke bg-elevated/60 p-4">
+              <span class="font-display text-2xl font-bold text-accent/40">03</span>
+              <div><h4 class="font-display font-bold uppercase text-frost">Future Esports Competitions</h4><p class="mt-1 text-sm text-muted">Building the infrastructure for the next wave of regional esports leagues.</p></div>
+            </div>
+          </div>
+          <button type="button" onclick="showPage('esports')" class="mt-8 rounded-full bg-ambercta px-8 py-3 font-display text-xs font-bold uppercase tracking-wider text-void hover:bg-amber-300">Explore Esports →</button>
+        </div>
+        <div class="rounded-2xl border border-accent/20 bg-gradient-to-b from-elevated to-night p-8 shadow-glow">
+          <span class="text-4xl">🎮</span>
+          <p class="mt-6 font-display text-3xl font-bold uppercase leading-tight text-frost">Play Sport.<br/><span class="text-accent">Game Hard.</span></p>
+          <div class="mt-8 space-y-3 border-t border-stroke pt-6">
+            <div class="flex items-center justify-between text-sm"><span class="text-muted">EAFC 25 Championship</span><span class="rounded-full bg-accent/20 px-3 py-1 font-display text-[10px] font-bold uppercase text-accent">OPEN</span></div>
+            <div class="flex items-center justify-between text-sm"><span class="text-muted">Community Cup</span><span class="rounded-full bg-stroke px-3 py-1 font-display text-[10px] font-bold uppercase text-muted">COMING SOON</span></div>
+            <div class="flex items-center justify-between text-sm"><span class="text-muted">Get Innn Pro League 2026</span><span class="rounded-full bg-stroke px-3 py-1 font-display text-[10px] font-bold uppercase text-muted">UPCOMING</span></div>
+          </div>
+          <button type="button" onclick="showPage('contact')" class="mt-8 w-full rounded-full bg-ambercta py-3 font-display text-xs font-bold uppercase tracking-wider text-void hover:bg-amber-300">Register Now →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-stroke bg-night/60 px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Success Stories</p>
+      <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">Players Who<br/>Transformed</h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl border border-stroke bg-elevated/80 p-6 backdrop-blur">
+          <div class="text-ambercta">★★★★★</div>
+          <p class="mt-4 text-sm leading-relaxed text-muted">RAFA Academy completely changed my game. The structured training and MBCL tournament experience pushed me to a level I never thought I'd reach. This is where my football journey truly began.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <img class="h-12 w-12 rounded-full object-cover" src="https://i.pravatar.cc/100?img=11" alt="Ahmed"/>
+            <div><div class="font-semibold text-frost">Ahmed Siddiqui</div><div class="text-xs text-muted">RAFA Academy — U17</div></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-stroke bg-elevated/80 p-6 backdrop-blur">
+          <div class="text-ambercta">★★★★★</div>
+          <p class="mt-4 text-sm leading-relaxed text-muted">We partnered with Get Innn Sports to run our corporate football event. The execution was flawless — from venue management to the tournament format. Professional to the core.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <img class="h-12 w-12 rounded-full object-cover" src="https://i.pravatar.cc/100?img=5" alt="Riya"/>
+            <div><div class="font-semibold text-frost">Riya Menon</div><div class="text-xs text-muted">Brand Event Partner</div></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-stroke bg-elevated/80 p-6 backdrop-blur">
+          <div class="text-ambercta">★★★★★</div>
+          <p class="mt-4 text-sm leading-relaxed text-muted">The EAFC tournament was next level. Great community, proper brackets, and insane energy. Get Innn Sports is building something special in the esports space here.</p>
+          <div class="mt-6 flex items-center gap-3">
+            <img class="h-12 w-12 rounded-full object-cover" src="https://i.pravatar.cc/100?img=8" alt="Zain"/>
+            <div><div class="font-semibold text-frost">Zain Malik</div><div class="text-xs text-muted">EAFC Tournament Player</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="border-y border-stroke bg-gradient-to-b from-void to-night">
+      <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+        <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">What's Next</p>
+        <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">The Future of<br/>Get Innn Sports</h2>
+        <p class="mt-4 max-w-2xl text-muted">We're just getting started. A complete sports ecosystem is being built — for this generation and the next.</p>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          <article class="rounded-2xl border border-stroke bg-elevated/70 p-6">
+            <span class="font-display text-5xl font-bold text-accent/30">26</span>
+            <span class="mt-4 block text-2xl">🌆</span>
+            <h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Expanding to More Cities</h3>
+            <p class="mt-2 text-sm text-muted">New arena locations and academy branches coming to more cities. Get Innn Sports is going nationwide.</p>
+          </article>
+          <article class="rounded-2xl border border-stroke bg-elevated/70 p-6">
+            <span class="font-display text-5xl font-bold text-accent/30">26</span>
+            <span class="mt-4 block text-2xl">🎮</span>
+            <h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Growing Esports</h3>
+            <p class="mt-2 text-sm text-muted">A full esports division is coming — professional teams, structured leagues, and live streaming infrastructure.</p>
+          </article>
+          <article class="rounded-2xl border border-stroke bg-elevated/70 p-6">
+            <span class="font-display text-5xl font-bold text-accent/30">27</span>
+            <span class="mt-4 block text-2xl">⚽</span>
+            <h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Player Pathways</h3>
+            <p class="mt-2 text-sm text-muted">Structured pathways from grassroots football to professional environments — through RAFA and beyond.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="relative overflow-hidden border-y border-stroke bg-gradient-to-r from-accent/15 via-night to-ambercta/10 px-5 py-14 md:px-12 lg:px-20">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(34,211,238,0.12),transparent_50%)]"></div>
+      <div class="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div>
+          <h2 class="font-display text-3xl font-bold uppercase text-frost md:text-4xl">Ready to Get<br/>Innn Sports?</h2>
+          <p class="mt-2 text-muted">Limited slots available. Don't wait — your journey starts here.</p>
+        </div>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto">
+          <button type="button" onclick="showPage('contact')" class="rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent ring-2 ring-accent/40 transition hover:-translate-y-0.5">Book Your Free Trial →</button>
+          <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20trial." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent transition hover:-translate-y-0.5 hover:text-glow">
+            <svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg>
+            Chat to Book Trial
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span>
+          <p class="mt-2 font-display text-[10px] uppercase tracking-[0.25em] text-muted">The Complete Sports Ecosystem</p>
+          <p class="mt-4 text-sm leading-relaxed text-muted">Play. Train. Compete. Experience. — Get Innn Sports is building a complete sports ecosystem for the next generation of athletes, competitors, and gamers.</p>
+          <div class="mt-6 flex gap-2">
+            <span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs uppercase text-muted hover:border-accent hover:text-accent">ig</span>
+            <span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs uppercase text-muted hover:border-accent hover:text-accent">tw</span>
+            <span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs uppercase text-muted hover:border-accent hover:text-accent">fb</span>
+            <span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs uppercase text-muted hover:border-accent hover:text-accent">yt</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-frost">The Ecosystem</h4>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            <li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">RAFA Academy</a></li>
+            <li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Events & Tournaments</a></li>
+            <li><a onclick="showPage('arenas')" class="cursor-pointer hover:text-accent">Arenas</a></li>
+            <li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Esports</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-frost">Company</h4>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            <li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">About Us</a></li>
+            <li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">MBCL Tournament</a></li>
+            <li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Partner With Us</a></li>
+            <li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-frost">Contact</h4>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            <li>📍 3 Arena Locations</li>
+            <li>📞 +91 XXXXX XXXXX</li>
+            <li>✉ hello@getinnnsports.com</li>
+            <li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mx-auto mt-12 flex max-w-7xl flex-col gap-2 border-t border-stroke pt-8 text-xs text-muted md:flex-row md:justify-between">
+        <span>© 2026 Get Innn Sports. All rights reserved.</span>
+        <span>Get Innn Sports = Get Into Sports</span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="page-rafa" class="page pt-[76px]">
+    <header class="relative overflow-hidden border-b border-stroke bg-gradient-to-br from-night via-void to-night px-5 pb-16 pt-28 md:px-12 lg:px-20">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.05]" style="background-image:linear-gradient(rgba(34,211,238,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.4) 1px,transparent 1px);background-size:48px 48px"></div>
+      <div class="relative mx-auto max-w-7xl">
+        <p onclick="showPage('home')" class="cursor-pointer font-display text-[11px] uppercase tracking-[0.35em] text-muted hover:text-accent">Home / <span class="text-frost">RAFA Academy</span></p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-none text-frost md:text-7xl">RAFA<br/>Academy</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted">Powered by Get Innn Sports — Developing the next generation of elite footballers with international-level coaching.</p>
+      </div>
+    </header>
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <p class="font-display text-sm text-muted">RAFA Academy — <span class="text-accent">Powered by Get Innn Sports</span></p>
+      <p class="mt-2 font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Elite Football Development</p>
+      <h2 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-frost md:text-5xl">This Is Where Your<br/>Football Journey Begins</h2>
+      <p class="mt-6 max-w-3xl text-muted leading-relaxed">We don't just train players — we build competitors. Structured, science-backed football development for every level and every age.</p>
+      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">01</span><span class="mt-2 block text-2xl">⚽</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Foundation Programme</h3><p class="mt-2 text-sm text-muted">Ages 6–10. Building fundamental football skills, coordination, and love for the game through structured play-based learning.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">02</span><span class="mt-2 block text-2xl">🎯</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Development Programme</h3><p class="mt-2 text-sm text-muted">Ages 11–14. Technical skill development, positional understanding, and tactical awareness with progressive training loads.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">03</span><span class="mt-2 block text-2xl">🏆</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Elite Performance</h3><p class="mt-2 text-sm text-muted">Ages 15–19. High-intensity training for players targeting professional pathways. Competition-focused development throughout.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">04</span><span class="mt-2 block text-2xl">🧤</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Goalkeeper Academy</h3><p class="mt-2 text-sm text-muted">Specialist goalkeeper training covering shot-stopping, distribution, commanding the area, and modern GK techniques.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">05</span><span class="mt-2 block text-2xl">🧠</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Mental Performance</h3><p class="mt-2 text-sm text-muted">Sports psychology sessions to build focus, resilience, and competitive mindset — the mental edge that separates good from great.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="font-display text-3xl font-bold text-accent/25">06</span><span class="mt-2 block text-2xl">🌍</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">International Exposure</h3><p class="mt-2 text-sm text-muted">Through our TalentX UK partnership, selected players get exposure to international training standards and professional environments.</p></article>
+      </div>
+    </section>
+    <section class="border-y border-stroke bg-night/50 px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">International Technical Partner</p>
+        <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">RAFA × TalentX<br/>Partnership</h2>
+        <p class="mt-6 text-muted leading-relaxed">RAFA Academy is proud to be partnered with TalentX (UK) as our technical partner — a premier football academy known for developing players who have progressed into professional football environments in England.</p>
+      </div>
+      <div class="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border border-accent/25 bg-elevated p-8 shadow-card md:p-14">
+        <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="rounded-lg bg-ambercta px-5 py-2 font-display text-xl font-bold uppercase text-void">RAFA</span>
+              <span class="text-2xl text-muted">×</span>
+              <span class="rounded-lg bg-frost px-5 py-2 font-display text-lg font-bold uppercase text-slate-900">TalentX <span class="text-sm font-semibold">UK</span></span>
+            </div>
+            <p class="mt-6 text-sm leading-relaxed text-muted">TalentX is a premier UK football academy with a proven track record of developing players who have progressed into professional football environments across England.</p>
+            <p class="mt-4 text-sm leading-relaxed text-muted">Through this exclusive partnership, RAFA Academy players benefit from the same systems and methodology used at the highest levels of the game.</p>
+          </div>
+          <div class="space-y-4">
+            <div class="flex gap-4 rounded-xl border border-stroke bg-night/60 p-4"><span class="text-xl">🌍</span><div><h4 class="font-display font-bold uppercase text-frost">International Training Methodology</h4><p class="mt-1 text-sm text-muted">UK-level coaching systems, drills, and frameworks applied directly to RAFA's programmes.</p></div></div>
+            <div class="flex gap-4 rounded-xl border border-stroke bg-night/60 p-4"><span class="text-xl">📊</span><div><h4 class="font-display font-bold uppercase text-frost">Structured Player Development</h4><p class="mt-1 text-sm text-muted">Data-driven progression systems used by professional academies worldwide.</p></div></div>
+            <div class="flex gap-4 rounded-xl border border-stroke bg-night/60 p-4"><span class="text-xl">⭐</span><div><h4 class="font-display font-bold uppercase text-frost">Global Football Standards</h4><p class="mt-1 text-sm text-muted">Exposure to the standards required for professional-level football progression.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="border-y border-stroke bg-gradient-to-r from-accent/10 via-night to-ambercta/10 px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div><h2 class="font-display text-3xl font-bold uppercase text-frost">Join the Next<br/>Batch Now</h2><p class="mt-2 text-muted">Limited slots — registrations closing soon.</p></div>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto">
+          <button type="button" onclick="showPage('contact')" class="rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent ring-2 ring-accent/40">Book Your Free Trial →</button>
+          <a href="https://wa.me/1234567890?text=Hi!%20I%27m%20interested%20in%20RAFA%20Academy." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent hover:text-glow">
+            <svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg>
+            Chat to Book Trial
+          </a>
+        </div>
+      </div>
+    </div>
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span>
+          <p class="mt-2 text-[10px] font-display uppercase tracking-[0.25em] text-muted">RAFA Academy — Powered by Get Innn Sports</p>
+          <p class="mt-4 text-sm text-muted leading-relaxed">Developing the next generation of elite footballers through internationally-influenced coaching and structured development.</p>
+          <div class="mt-6 flex gap-2"><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">ig</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">tw</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">fb</span></div>
+        </div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Navigate</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">Home</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Events</a></li><li><a onclick="showPage('arenas')" class="cursor-pointer hover:text-accent">Arenas</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Esports</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Contact</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Programmes</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">Foundation (6–10)</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">Development (11–14)</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">Elite Performance (15–19)</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">Goalkeeper Academy</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Contact</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li>📞 +91 XXXXX XXXXX</li><li>✉ hello@getinnnsports.com</li><li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li></ul></div>
+      </div>
+      <div class="mx-auto mt-12 max-w-7xl border-t border-stroke pt-8 text-xs text-muted">© 2026 Get Innn Sports. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <div id="page-events" class="page pt-[76px]">
+    <header class="relative overflow-hidden border-b border-stroke bg-gradient-to-br from-night via-void to-night px-5 pb-16 pt-28 md:px-12 lg:px-20">
+      <div class="relative mx-auto max-w-7xl">
+        <p onclick="showPage('home')" class="cursor-pointer font-display text-[11px] uppercase tracking-[0.35em] text-muted hover:text-accent">Home / <span class="text-frost">Events</span></p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-none text-frost md:text-7xl">Events &<br/>Tournaments</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted">We Organise. We Manage. We Execute. — Own IP events and full event management for partner brands.</p>
+      </div>
+    </header>
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Our Approach</p>
+        <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">We Organise.<br/>We Manage.<br/>We Execute.</h2>
+        <p class="mt-6 text-muted leading-relaxed">From our own flagship tournaments to executing large-scale events for other brands — Get Innn Sports is a full-service sports event powerhouse.</p>
+      </div>
+      <div class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-stroke bg-stroke md:grid-cols-2">
+        <div class="relative bg-elevated p-10"><div class="absolute inset-x-0 top-0 h-1 bg-accent"></div><p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Own IP Events</p><h3 class="mt-4 font-display text-2xl font-bold uppercase text-frost">Our Tournaments</h3><p class="mt-4 text-sm leading-relaxed text-muted">We create and own our tournament brands. MBCL and future IPs that bring together players, teams, and fans for unforgettable competitive experiences.</p><ul class="mt-6 space-y-2 text-sm text-muted"><li class="flex gap-2"><span class="text-accent">✓</span> Full tournament organisation & management</li><li class="flex gap-2"><span class="text-accent">✓</span> Branding, marketing & promotion</li><li class="flex gap-2"><span class="text-accent">✓</span> Player registration & team management</li><li class="flex gap-2"><span class="text-accent">✓</span> Live coverage & post-event highlights</li></ul></div>
+        <div class="relative bg-elevated p-10"><div class="absolute inset-x-0 top-0 h-1 bg-stroke"></div><p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-muted">Partner Events</p><h3 class="mt-4 font-display text-2xl font-bold uppercase text-frost">Brand & Corporate</h3><p class="mt-4 text-sm leading-relaxed text-muted">We execute sports events for other brands and companies — from corporate football days to large-scale sports festivals. End-to-end management, delivered.</p><ul class="mt-6 space-y-2 text-sm text-muted"><li class="flex gap-2"><span class="text-accent">✓</span> Complete event management</li><li class="flex gap-2"><span class="text-accent">✓</span> Venue sourcing & logistics</li><li class="flex gap-2"><span class="text-accent">✓</span> Brand integration & experience design</li><li class="flex gap-2"><span class="text-accent">✓</span> Flawless end-to-end execution</li></ul></div>
+      </div>
+      <p class="mt-16 font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Flagship Event</p>
+      <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">MBCL — Mid-Block<br/>Champions League</h2>
+      <div class="mt-10 grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
+        <div class="relative overflow-hidden rounded-2xl border border-stroke"><img class="aspect-video w-full object-cover" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1000&q=80" alt="MBCL"/><div class="absolute bottom-6 left-6 rounded-lg bg-ambercta px-4 py-2 font-display text-xs font-bold uppercase text-void">MBCL 2026 — Registrations Open Now</div></div>
+        <div>
+          <p class="text-muted leading-relaxed">MBCL is our flagship football tournament — a competitive, structured league format that gives players and teams a real competitive platform to showcase their talent at the highest local level.</p>
+          <p class="mt-4 text-sm text-muted leading-relaxed">From group stages to knockout rounds, MBCL is the premier community football competition in the region — growing every season.</p>
+          <button type="button" onclick="showPage('contact')" class="mt-8 rounded-full bg-ambercta px-8 py-3 font-display text-xs font-bold uppercase tracking-wider text-void hover:bg-amber-300">Register Your Team Now →</button>
+          <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20MBCL%20registration%20details." target="_blank" class="mt-4 inline-flex items-center gap-2 rounded-full border border-accent/40 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-accent hover:bg-accent hover:text-void"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> Get MBCL Details on WhatsApp</a>
+          <div class="pulse-dot mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase text-red-400 before:h-1.5 before:w-1.5 before:rounded-full before:bg-red-400 before:content-['']">Registrations Closing Soon</div>
+        </div>
+      </div>
+    </section>
+    <div class="border-y border-stroke bg-gradient-to-r from-accent/10 via-night to-ambercta/10 px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div><h2 class="font-display text-3xl font-bold uppercase text-frost">Want Us to Run<br/>Your Event?</h2><p class="mt-2 text-muted">Partner with Get Innn Sports for end-to-end event management.</p></div>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto">
+          <button type="button" onclick="showPage('contact')" class="rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent ring-2 ring-accent/40">Talk to Our Events Team →</button>
+          <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20discuss%20a%20partner%20event." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent hover:text-glow"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div><span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span><p class="mt-2 text-[10px] font-display uppercase tracking-[0.25em] text-muted">The Complete Sports Ecosystem</p><p class="mt-4 text-sm text-muted">We Organise. We Manage. We Execute.</p><div class="mt-6 flex gap-2"><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">ig</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">tw</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">fb</span></div></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Navigate</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">Home</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">RAFA Academy</a></li><li><a onclick="showPage('arenas')" class="cursor-pointer hover:text-accent">Arenas</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Esports</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Contact</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Events</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">MBCL Tournament</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Partner Events</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Community Events</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Register Your Team</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Contact</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li>📞 +91 XXXXX XXXXX</li><li>✉ hello@getinnnsports.com</li><li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li></ul></div>
+      </div>
+      <div class="mx-auto mt-12 max-w-7xl border-t border-stroke pt-8 text-xs text-muted">© 2026 Get Innn Sports. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <div id="page-arenas" class="page pt-[76px]">
+    <header class="relative overflow-hidden border-b border-stroke bg-gradient-to-br from-night via-void to-night px-5 pb-16 pt-28 md:px-12 lg:px-20">
+      <div class="relative mx-auto max-w-7xl">
+        <p onclick="showPage('home')" class="cursor-pointer font-display text-[11px] uppercase tracking-[0.35em] text-muted hover:text-accent">Home / <span class="text-frost">Arenas</span></p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-none text-frost md:text-7xl">Our<br/>Arenas</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted">3 premium sports arena locations — built for performance, designed for champions.</p>
+      </div>
+    </header>
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Sports Infrastructure</p>
+      <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">Where Champions<br/>Play</h2>
+      <p class="mt-6 max-w-3xl text-muted leading-relaxed">Get Innn Sports operates 3 state-of-the-art arena locations — providing world-class facilities for training, tournaments, and community sport.</p>
+      <div class="mt-14 grid gap-8 lg:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card"><img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=900&q=80" alt="Main Arena"/><div class="p-6"><p class="font-display text-[10px] font-bold uppercase tracking-wider text-accent">Arena 01 · Flagship Location</p><h3 class="mt-2 font-display text-xl font-bold uppercase text-frost">Get Innn Main Arena</h3><p class="mt-3 text-sm text-muted">Our flagship arena — home of MBCL and the largest tournaments. Full-size pitches, spectator stands, and premium match-day facilities.</p><div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Full-Size Pitches</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Floodlights</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Changing Rooms</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Spectator Stands</span></div><button type="button" onclick="showPage('contact')" class="mt-6 w-full rounded-full bg-ambercta py-3 font-display text-xs font-bold uppercase text-void hover:bg-amber-300">Book This Arena →</button></div></article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card"><img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1459865264687-595d652de67e?w=900&q=80" alt="RAFA Ground"/><div class="p-6"><p class="font-display text-[10px] font-bold uppercase tracking-wider text-accent">Arena 02 · RAFA Academy Home</p><h3 class="mt-2 font-display text-xl font-bold uppercase text-frost">RAFA Training Ground</h3><p class="mt-3 text-sm text-muted">Dedicated RAFA Academy training facility with multiple pitches, video analysis rooms, and specialist coaching infrastructure.</p><div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Training Pitches</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Video Analysis</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Gym</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Classroom</span></div><button type="button" onclick="showPage('contact')" class="mt-6 w-full rounded-full bg-ambercta py-3 font-display text-xs font-bold uppercase text-void hover:bg-amber-300">Book This Arena →</button></div></article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card"><img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80" alt="Community Hub"/><div class="p-6"><p class="font-display text-[10px] font-bold uppercase tracking-wider text-accent">Arena 03 · Community Hub</p><h3 class="mt-2 font-display text-xl font-bold uppercase text-frost">Community Sports Hub</h3><p class="mt-3 text-sm text-muted">A multi-sport community arena open for casual bookings, league games, and esports events. Sport for everyone, every day.</p><div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Multi-Sport</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Esports Zone</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Café</span><span class="rounded-full border border-stroke px-3 py-1 text-[10px] uppercase text-muted">Open Bookings</span></div><button type="button" onclick="showPage('contact')" class="mt-6 w-full rounded-full bg-ambercta py-3 font-display text-xs font-bold uppercase text-void hover:bg-amber-300">Book This Arena →</button></div></article>
+      </div>
+    </section>
+    <div class="border-y border-stroke bg-gradient-to-r from-accent/10 via-night to-ambercta/10 px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div><h2 class="font-display text-3xl font-bold uppercase text-frost">Book an Arena<br/>Today</h2><p class="mt-2 text-muted">All 3 locations available. Premium pitches, great rates.</p></div>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto"><button type="button" onclick="showPage('contact')" class="rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent ring-2 ring-accent/40">Book Now →</button><a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20book%20an%20arena." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent hover:text-glow"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp to Book</a></div>
+      </div>
+    </div>
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
+        <div><span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span><p class="mt-2 text-[10px] font-display uppercase tracking-[0.25em] text-muted">The Complete Sports Ecosystem</p><p class="mt-4 text-sm text-muted">3 premium arena locations — built for performance, designed for champions.</p><div class="mt-6 flex gap-2"><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">ig</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">tw</span></div></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Navigate</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">Home</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">RAFA Academy</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Events</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Esports</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Contact</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Contact</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li>📞 +91 XXXXX XXXXX</li><li>✉ hello@getinnnsports.com</li><li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li></ul></div>
+      </div>
+      <div class="mx-auto mt-12 max-w-7xl border-t border-stroke pt-8 text-xs text-muted">© 2026 Get Innn Sports. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <div id="page-esports" class="page pt-[76px]">
+    <header class="relative overflow-hidden border-b border-stroke bg-gradient-to-br from-[#070b14] via-night to-void px-5 pb-16 pt-28 md:px-12 lg:px-20">
+      <div class="relative mx-auto max-w-7xl">
+        <p onclick="showPage('home')" class="cursor-pointer font-display text-[11px] uppercase tracking-[0.35em] text-muted hover:text-accent">Home / <span class="text-frost">Esports</span></p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-none text-frost md:text-7xl">Esports<br/>& Gaming</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted">The next generation of sports is here. Compete. Game. Win.</p>
+      </div>
+    </header>
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Esports at Get Innn Sports</p>
+        <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">The Next<br/>Generation of<br/>Sports Is Here</h2>
+        <p class="mt-6 text-muted leading-relaxed">Esports isn't just gaming — it's the future of competitive sports. At Get Innn Sports, we're building a proper esports vertical with tournaments, leagues, and a community that takes it seriously.</p>
+      </div>
+      <div class="mt-14 grid gap-6 lg:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card lg:col-span-2 lg:row-span-2">
+          <img class="h-56 w-full object-cover lg:h-72" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=900&q=80" alt="EAFC"/>
+          <div class="p-6"><span class="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-display text-[10px] font-bold uppercase text-accent">EAFC Tournaments</span><h3 class="mt-4 font-display text-2xl font-bold uppercase text-frost">EA FC 25 Championship</h3><p class="mt-3 text-sm text-muted">Our flagship EAFC tournament with competitive brackets, prize pools, and a growing community. Open to all skill levels — from casual to competitive.</p><div class="mt-6 flex flex-wrap gap-3"><button type="button" onclick="showPage('contact')" class="rounded-full bg-ambercta px-6 py-3 font-display text-xs font-bold uppercase text-void hover:bg-amber-300">Register Now →</button><a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20join%20the%20EAFC%20tournament." target="_blank" class="inline-flex items-center gap-2 rounded-full border border-accent/40 px-6 py-3 font-display text-xs font-bold uppercase text-accent hover:bg-accent hover:text-void"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> Get Details</a></div></div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card"><img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=700&q=80" alt="Community Gaming"/><div class="p-6"><span class="rounded-full border border-stroke px-3 py-1 font-display text-[10px] font-bold uppercase text-muted">Community Events</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Community Gaming Nights</h3><p class="mt-2 text-sm text-muted">Regular community gaming events — casual, competitive, and full of energy. Everyone is welcome.</p></div></article>
+        <article class="overflow-hidden rounded-2xl border border-stroke bg-elevated shadow-card"><img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=700&q=80" alt="Pro League"/><div class="p-6"><span class="rounded-full border border-red-400/30 bg-red-400/10 px-3 py-1 font-display text-[10px] font-bold uppercase text-red-400">Coming Soon</span><h3 class="mt-3 font-display text-lg font-bold uppercase text-frost">Get Innn Esports Pro League</h3><p class="mt-2 text-sm text-muted">The professional esports league is coming. Building the infrastructure for the next level of regional competitive gaming.</p></div></article>
+      </div>
+    </section>
+    <section class="border-y border-stroke bg-night/50 px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Why Compete Here</p>
+      <h2 class="mt-4 font-display text-4xl font-bold uppercase text-frost">More Than Gaming.<br/>It's Sport.</h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="text-2xl">🏆</span><h3 class="mt-4 font-display text-lg font-bold uppercase text-frost">Competitive Brackets</h3><p class="mt-2 text-sm text-muted">Proper tournament formats with seeding, brackets, and progression — run like a real professional sports event.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="text-2xl">👥</span><h3 class="mt-4 font-display text-lg font-bold uppercase text-frost">Strong Community</h3><p class="mt-2 text-sm text-muted">A growing community of gamers who take it seriously, push each other to improve, and show up every event.</p></article>
+        <article class="rounded-2xl border border-stroke bg-elevated/70 p-6"><span class="text-2xl">🎯</span><h3 class="mt-4 font-display text-lg font-bold uppercase text-frost">Real Prizes</h3><p class="mt-2 text-sm text-muted">Cash prizes, trophies, and recognition. We run esports the way real sports should be run.</p></article>
+      </div>
+    </section>
+    <div class="border-y border-stroke bg-gradient-to-r from-accent/10 via-night to-ambercta/10 px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div><h2 class="font-display text-3xl font-bold uppercase text-frost">Ready to<br/>Compete?</h2><p class="mt-2 text-muted">Join the next EAFC tournament — registrations open now.</p></div>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto"><button type="button" onclick="showPage('contact')" class="rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent ring-2 ring-accent/40">Register Now →</button><a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20join%20an%20esports%20tournament." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full bg-void px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent hover:text-glow"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> Get Details on WhatsApp</a></div>
+      </div>
+    </div>
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div><span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span><p class="mt-2 text-[10px] font-display uppercase tracking-[0.25em] text-muted">The Complete Sports Ecosystem</p><p class="mt-4 text-sm text-muted">The next generation of sports is here. Play Sport. Game Hard.</p><div class="mt-6 flex gap-2"><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">ig</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">tw</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">yt</span></div></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Navigate</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">Home</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">RAFA Academy</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Events</a></li><li><a onclick="showPage('arenas')" class="cursor-pointer hover:text-accent">Arenas</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Contact</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Esports</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">EAFC Tournaments</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Community Gaming</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Pro League (Soon)</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Register Now</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Contact</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li>📞 +91 XXXXX XXXXX</li><li>✉ hello@getinnnsports.com</li><li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li></ul></div>
+      </div>
+      <div class="mx-auto mt-12 max-w-7xl border-t border-stroke pt-8 text-xs text-muted">© 2026 Get Innn Sports. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <div id="page-contact" class="page pt-[76px]">
+    <header class="relative overflow-hidden border-b border-stroke bg-gradient-to-br from-night via-void to-night px-5 pb-16 pt-28 md:px-12 lg:px-20">
+      <div class="relative mx-auto max-w-7xl">
+        <p onclick="showPage('home')" class="cursor-pointer font-display text-[11px] uppercase tracking-[0.35em] text-muted hover:text-accent">Home / <span class="text-frost">Contact</span></p>
+        <h1 class="mt-6 font-display text-5xl font-bold uppercase leading-none text-frost md:text-7xl">Get In<br/>Touch</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted">Book a free trial, register your team, or partner with us. We're ready.</p>
+      </div>
+    </header>
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24 lg:px-20">
+      <div class="grid gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-20">
+        <div>
+          <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Let's Talk</p>
+          <h2 class="mt-4 font-display text-4xl font-bold uppercase leading-tight text-frost md:text-5xl">Ready to Get<br/>Innn Sports?</h2>
+          <p class="mt-6 text-muted leading-relaxed">Whether you're a player looking for a free trial, a team wanting to register for MBCL, or a brand wanting to partner on an event — we'd love to hear from you.</p>
+          <div class="mt-10 space-y-6">
+            <div class="flex gap-4"><div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-lg">📍</div><div><h4 class="font-display font-bold uppercase text-frost">Our Locations</h4><p class="mt-1 text-sm text-muted">3 Arena Locations<br/>Contact us for nearest arena to you</p></div></div>
+            <div class="flex gap-4"><div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-lg">📞</div><div><h4 class="font-display font-bold uppercase text-frost">Phone</h4><p class="mt-1 text-sm text-muted">+91 XXXXX XXXXX<br/>Mon–Sat, 9AM–9PM</p></div></div>
+            <div class="flex gap-4"><div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-lg">✉️</div><div><h4 class="font-display font-bold uppercase text-frost">Email</h4><p class="mt-1 text-sm text-muted">hello@getinnnsports.com<br/>We reply within 24 hours</p></div></div>
+            <div class="flex gap-4"><div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-lg">💬</div><div><h4 class="font-display font-bold uppercase text-frost">WhatsApp — Fastest Response</h4><p class="mt-1 text-sm text-muted">Instant replies for bookings & enquiries<br/><a href="https://wa.me/1234567890" target="_blank" class="font-semibold text-accent hover:underline">Start Chat on WhatsApp →</a></p></div></div>
+          </div>
+          <div class="mt-10 flex flex-col gap-3">
+            <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20to%20book%20a%20free%20trial%20at%20RAFA%20Academy." target="_blank" class="inline-flex items-center justify-center gap-2 rounded-full border border-accent/40 bg-elevated px-6 py-4 font-display text-xs font-bold uppercase tracking-wider text-accent hover:bg-accent hover:text-void"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg> Chat to Book Free Trial</a>
+            <a href="https://wa.me/1234567890?text=Hi!%20I%27d%20like%20MBCL%20tournament%20details." target="_blank" class="rounded-full border border-stroke py-4 text-center font-display text-xs font-bold uppercase tracking-wider text-frost hover:border-accent hover:text-accent">Get Tournament Details on WhatsApp</a>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-stroke bg-elevated/80 p-8 shadow-card backdrop-blur md:p-10">
+          <p class="font-display text-[11px] font-bold uppercase tracking-[0.35em] text-accent">Send a Message</p>
+          <h2 class="mt-4 font-display text-3xl font-bold uppercase text-frost md:text-4xl">Book Your<br/>Free Trial</h2>
+          <div class="pulse-dot mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase text-red-400 before:h-1.5 before:w-1.5 before:rounded-full before:bg-red-400 before:content-['']">Limited Slots Available — Act Now</div>
+          <form class="mt-8 space-y-5" onsubmit="event.preventDefault(); window.alert('Thanks! Our team will reach out within 24 hours.\n\nFor a faster response — WhatsApp us directly!');">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">First Name</label><input type="text" placeholder="Ahmed" class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"/></div>
+              <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">Last Name</label><input type="text" placeholder="Khan" class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"/></div>
+            </div>
+            <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX" class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"/></div>
+            <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">Email Address</label><input type="email" placeholder="you@example.com" class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"/></div>
+            <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">Age / Player Age</label><input type="text" placeholder="e.g. 15 years old" class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"/></div>
+            <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">I'm Interested In</label><select class="rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"><option>Select...</option><option>RAFA Academy — Free Trial</option><option>RAFA Academy — Join Next Batch</option><option>MBCL — Register My Team</option><option>Arena Booking</option><option>Esports Tournament</option><option>Partner Event / Brand Collaboration</option><option>General Enquiry</option></select></div>
+            <div class="flex flex-col gap-2"><label class="font-display text-[11px] font-bold uppercase tracking-wider text-muted">Tell Us More</label><textarea placeholder="Player age, experience level, what you're looking for..." rows="4" class="resize-none rounded-xl border border-stroke bg-night px-4 py-3 text-frost outline-none transition focus:border-accent"></textarea></div>
+            <button type="submit" class="w-full rounded-full bg-ambercta py-4 font-display text-sm font-bold uppercase tracking-wider text-void transition hover:bg-amber-300">Submit — We'll Get Back Within 24hrs →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <footer class="border-t border-stroke bg-void px-5 py-14 md:px-12 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div><span class="font-display text-xl font-bold uppercase tracking-widest text-frost">GET INN<span class="text-accent">N</span></span><p class="mt-2 text-[10px] font-display uppercase tracking-[0.25em] text-muted">The Complete Sports Ecosystem</p><p class="mt-4 text-sm text-muted">Play. Train. Compete. Experience. — Get Innn Sports = Get Into Sports.</p><div class="mt-6 flex gap-2"><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">ig</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">tw</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">fb</span><span class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-stroke text-xs text-muted hover:border-accent hover:text-accent">yt</span></div></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Navigate</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('home')" class="cursor-pointer hover:text-accent">Home</a></li><li><a onclick="showPage('rafa')" class="cursor-pointer hover:text-accent">RAFA Academy</a></li><li><a onclick="showPage('events')" class="cursor-pointer hover:text-accent">Events</a></li><li><a onclick="showPage('arenas')" class="cursor-pointer hover:text-accent">Arenas</a></li><li><a onclick="showPage('esports')" class="cursor-pointer hover:text-accent">Esports</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Quick Actions</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Book Free Trial</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Register Your Team</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Partner With Us</a></li><li><a onclick="showPage('contact')" class="cursor-pointer hover:text-accent">Book an Arena</a></li></ul></div>
+        <div><h4 class="font-display text-sm font-bold uppercase text-frost">Contact</h4><ul class="mt-4 space-y-2 text-sm text-muted"><li>📞 +91 XXXXX XXXXX</li><li>✉ hello@getinnnsports.com</li><li><a href="https://wa.me/1234567890" target="_blank" class="hover:text-accent">💬 WhatsApp Us</a></li></ul></div>
+      </div>
+      <div class="mx-auto mt-12 flex max-w-7xl flex-col gap-2 border-t border-stroke pt-8 text-xs text-muted md:flex-row md:justify-between"><span>© 2026 Get Innn Sports. All rights reserved.</span><span>Get Innn Sports = Get Into Sports</span></div>
+    </footer>
+  </div>
+
+
+  <div id="videoModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/95 p-4" onclick="closeVideoModal()" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl" onclick="event.stopPropagation()">
+      <button type="button" onclick="closeVideoModal()" class="absolute -top-12 right-0 font-display text-sm font-bold uppercase tracking-widest text-frost hover:text-accent">✕ Close</button>
+      <div class="flex aspect-video flex-col items-center justify-center overflow-hidden rounded-2xl border border-stroke bg-elevated p-8 text-center">
+        <span class="mb-4 text-5xl md:text-6xl" aria-hidden="true">🎬</span>
+        <div class="font-display text-2xl font-bold uppercase tracking-wide text-accent md:text-3xl">Highlight Reel</div>
+        <p class="mt-2 max-w-md text-sm text-muted md:text-base">Coming Soon — Training, Matches, Goals, Crowd</p>
+        <a href="https://wa.me/1234567890" target="_blank" class="mt-8 inline-flex items-center gap-2 rounded-xl border border-accent/40 bg-night px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-accent transition hover:bg-accent hover:text-void">
+          <svg class="h-4 w-4" aria-hidden="true"><use href="#i-wa"/></svg>
+          Follow on WhatsApp for Updates
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+      var page = document.getElementById('page-' + name);
+      if (page) page.classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(function (a) {
+        a.classList.remove('active', 'text-accent', 'underline', 'decoration-accent', 'decoration-2', 'underline-offset-8');
+        a.classList.add('text-muted');
+      });
+      var navEl = document.getElementById('nav-' + name);
+      if (navEl) {
+        navEl.classList.add('active', 'text-accent', 'underline', 'decoration-accent', 'decoration-2', 'underline-offset-8');
+        navEl.classList.remove('text-muted');
+      }
+      document.querySelectorAll('.nav-links .cursor-pointer.rounded-full').forEach(function (cta) {
+        cta.classList.remove('ring-2', 'ring-accent');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var links = document.querySelector('.nav-links');
+      if (links) {
+        links.classList.remove('is-open', 'fixed', 'inset-x-0', 'top-[76px]', 'z-[999]', 'flex-col', 'border-b', 'border-stroke');
+      }
+    }
+
+    function openVideoModal() {
+      var m = document.getElementById('videoModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      var m = document.getElementById('videoModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeVideoModal();
+    });
+
+    function toggleMobileMenu() {
+      var links = document.querySelector('.nav-links');
+      if (!links) return;
+      var open = links.classList.toggle('is-open');
+      links.classList.toggle('fixed', open);
+      links.classList.toggle('inset-x-0', open);
+      links.classList.toggle('top-[76px]', open);
+      links.classList.toggle('z-[999]', open);
+      links.classList.toggle('flex-col', open);
+      links.classList.toggle('border-b', open);
+      links.classList.toggle('border-stroke', open);
+    }
+
+    var statEls = document.querySelectorAll('.stat-num[data-target]');
+    var counterObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.dataset.target, 10);
+        var duration = 1600;
+        var steps = 60;
+        var step = 0;
+        var increment = target / steps;
+        var timer = setInterval(function () {
+          step++;
+          var val = Math.min(Math.round(increment * step), target);
+          el.textContent = target > 10 ? val.toLocaleString() + '+' : (step >= steps ? target : val);
+          if (step >= steps) {
+            el.textContent = target >= 1000 ? '1000+' : (target >= 10 ? '10+' : String(target));
+            clearInterval(timer);
+          }
+        }, duration / steps);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    statEls.forEach(function (el) { counterObs.observe(el); });
+  </script>
+</body>
+</html>
